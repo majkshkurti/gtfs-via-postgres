@@ -55,6 +55,9 @@ const convertGtfsToSql = async function* (files, opt = {}) {
 		'frequencies': {
 			dep: [...deps.frequencies],
 		},
+		'optimizations': {
+			dep: [...deps.optimizations],
+		}
 	}
 
 	for (const file of files) {

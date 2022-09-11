@@ -30,6 +30,8 @@ Options:
     --stops-without-level-id      Don't require stops.txt items to have a level_id.
                                   Default if levels.txt has not been provided.
 	--schema 					  The schema to use for the database. Default: public
+	--start-date 				  Optimization start date
+	--end-date 					  Optimization end date
 Examples:
     gtfs-to-sql some-gtfs/*.txt | psql -b # import into PostgreSQL
     gtfs-to-sql -u -- some-gtfs/*.txt | gzip >gtfs.sql # generate a gzipped SQL dump
@@ -57,8 +59,11 @@ const opt = {
 	ignoreUnsupportedFiles: !!(argv['ignore-unsupported'] || argv.u),
 	tripsWithoutShapeId: !!argv['trips-without-shape-id'],
 	routesWithoutAgencyId: !!argv['routes-without-agency-id'],
-	schema: argv['schema'] || 'public'
+	schema: argv['schema'] || 'public',
+	startDate: argv['start-date'] || '2022-05-16',
+	endDate: argv['end-date'] || '2022-05-26'
 }
+
 if ('stops-without-level-id' in argv) {
 	opt.stopsWithoutLevelId = !!argv['stops-without-level-id']
 }
